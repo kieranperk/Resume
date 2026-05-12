@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kieran Perkinton - Photographer, Gaffer & Media Technician</title>
+  <link rel="icon" type="image/jpeg" href="image.jpg">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f4f0;
+      --mid: #888;
+      --rule: #222;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      overflow-x: hidden;
+    }
+
+    /* ── PRINT BUTTON ── */
+    #print-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 100;
+      background: var(--white);
+      color: var(--black);
+      border: none;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    #print-btn:hover { background: var(--mid); color: var(--white); }
+
+    /* ── LAYOUT ── */
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 5rem 0 0;
+      position: relative;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 2rem;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 2rem;
+    }
+
+    .hero-name {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: clamp(3.5rem, 10vw, 11rem);
+      font-weight: 700;
+      line-height: 0.88;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .hero-name span {
+      display: block;
+    }
+
+    .hero-meta {
+      text-align: right;
+      padding-bottom: 0.4rem;
+    }
+
+    .hero-meta p {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      line-height: 2;
+    }
+
+    .hero-meta a {
+      color: var(--white);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .hero-meta a:hover { border-color: var(--white); }
+
+    .tagline {
+      padding: 1.2rem 0 3rem;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1rem, 2.2vw, 1.3rem);
+      color: var(--mid);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── SECTION ARCHITECTURE ── */
+    .section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+    }
+
+    .section-label {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      padding-top: 0.25rem;
+    }
+
+    .section-content {}
+
+    /* ── EXPERIENCE ITEMS ── */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      padding: 1.2rem 0;
+      border-top: 1px solid #1a1a1a;
+      align-items: start;
+      transition: background 0.15s;
+    }
+
+    .exp-item:first-child { border-top: none; }
+
+    .exp-role {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-org {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-desc {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: #aaa;
+      max-width: 56ch;
+    }
+
+    .exp-date {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #555;
+      white-space: nowrap;
+      padding-top: 0.3rem;
+    }
+
+    /* ── CLIENTS GRID ── */
+    .clients-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .client-pill {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid #333;
+      padding: 0.35rem 0.9rem;
+      color: var(--white);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .client-pill:hover { border-color: var(--white); }
+
+    /* ── SKILLS ── */
+    .skills-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.6rem 2rem;
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.88rem;
+      color: #bbb;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .skill-dot {
+      width: 4px;
+      height: 4px;
+      background: var(--white);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-title {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .edu-sub {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-note {
+      font-size: 0.88rem;
+      color: #888;
+      font-style: italic;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem 0 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #444;
+    }
+
+    footer a { color: #666; text-decoration: none; }
+    footer a:hover { color: var(--white); }
+
+    /* ── PROFILE PHOTO ── */
+    .profile-photo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 1px solid #333;
+      display: block;
+      margin-bottom: 2rem;
+      filter: grayscale(20%);
+    }
+
+    @media print {
+      .profile-photo { border-color: #ccc; filter: none; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-name, .hero-meta, .tagline {
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-meta { animation-delay: 0.1s; }
+    .tagline   { animation-delay: 0.2s; }
+
+    .section {
+      opacity: 0;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .section:nth-child(1) { animation-delay: 0.35s; }
+    .section:nth-child(2) { animation-delay: 0.45s; }
+    .section:nth-child(3) { animation-delay: 0.55s; }
+    .section:nth-child(4) { animation-delay: 0.65s; }
+    .section:nth-child(5) { animation-delay: 0.75s; }
+    .section:nth-child(6) { animation-delay: 0.85s; }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      @page {
+        size: A4;
+        margin: 15mm 18mm;
+      }
+
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+      body { background: #fff !important; color: #000 !important; font-size: 10pt; }
+      :root { --black: #fff; --white: #000; --mid: #333; --rule: #ccc; }
+
+      #print-btn { display: none !important; }
+
+      .page { max-width: 100%; padding: 0; }
+
+      /* Hero */
+      .hero { padding: 0 0 0.5rem; }
+      .hero-inner { padding-bottom: 0.8rem; border-bottom-color: #bbb; grid-template-columns: 1fr auto; }
+      .hero-name { font-size: 3.2rem !important; color: #000; line-height: 0.9; }
+      .hero-meta p { color: #333 !important; font-size: 0.65rem; line-height: 1.8; }
+      .hero-meta a { color: #000 !important; }
+      .tagline { padding: 0.6rem 0 1rem; font-size: 0.8rem; color: #333 !important; }
+
+      .profile-photo { width: 70px; height: 70px; margin-bottom: 1rem; border-color: #ccc; filter: none; }
+
+      /* Sections */
+      .section {
+        padding: 0.7rem 0 !important;
+        border-bottom-color: #ccc !important;
+        gap: 1.2rem !important;
+        opacity: 1 !important;
+        animation: none !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .section-label {
+        font-size: 0.58rem;
+        letter-spacing: 0.15em;
+        color: #333 !important;
+        padding-top: 0.1rem;
+      }
+
+      /* Experience items */
+      .exp-item {
+        padding: 0.6rem 0 !important;
+        border-top-color: #ddd !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .exp-role  { font-size: 0.88rem; color: #000 !important; margin-bottom: 0.15rem; }
+      .exp-org   { font-size: 0.65rem; margin-bottom: 0.25rem; color: #333 !important; }
+      .exp-desc  { font-size: 0.75rem; color: #222 !important; line-height: 1.5; max-width: 100%; }
+      .exp-date  { font-size: 0.62rem; color: #444 !important; }
+      .edu-title { font-size: 0.88rem; color: #000 !important; }
+      .edu-sub   { font-size: 0.65rem; color: #333 !important; }
+      .edu-note  { font-size: 0.72rem; color: #444 !important; }
+
+      /* Clients */
+      .clients-grid { gap: 0.3rem; }
+      .client-pill { border-color: #aaa !important; color: #000 !important; font-size: 0.6rem; padding: 0.2rem 0.6rem; }
+
+      /* Skills */
+      .skills-list { gap: 0.3rem 1.5rem; }
+      .skill-item { font-size: 0.72rem; color: #222 !important; border-bottom-color: #eee !important; padding: 0.15rem 0; }
+      .skill-dot { background: #000 !important; }
+
+      /* Skills sub-category labels */
+      .section-content > div > div:first-child { color: #444 !important; font-size: 0.58rem !important; margin-bottom: 0.4rem !important; }
+
+      /* Interests */
+      .exp-desc strong { color: #000 !important; }
+
+      footer { color: #666 !important; font-size: 0.6rem; padding: 0.8rem 0 0; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .hero-meta { text-align: left; }
+    }
+
+    @media (max-width: 720px) {
+      .section {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .hero-meta { text-align: left; }
+
+      .exp-item {
+        grid-template-columns: 1fr;
+      }
+
+      .exp-date { padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <button id="print-btn" onclick="window.print()">↓ Print / Save PDF</button>
+
+  <div class="page">
+
+    <header class="hero">
+      <img src="image.jpg" alt="Kieran Perkinton" class="profile-photo">
+
+      <div class="hero-inner">
+        <div>
+          <h1 class="hero-name">
+            <span>Kieran</span>
+            <span>Perkinton</span>
+          </h1>
+        </div>
+        <div class="hero-meta">
+          <p><a href="mailto:contact@kieranperk.com">contact@kieranperk.com</a></p>
+          <p><a href="tel:+447394339677">+44 07394 339677</a></p>
+          <p><a href="https://kieranperk.com" target="_blank">kieranperk.com</a></p>
+          <p>Bewdley, Worcestershire</p>
+        </div>
+      </div>
+      <p class="tagline">Gaffer &amp; Lighting Technician &nbsp;·&nbsp; Photographer &nbsp;·&nbsp; Live Production &amp; Streaming</p>
+    </header>
+
+    <main>
+
+      <!-- PROFILE -->
+      <div class="section">
+        <div class="section-label">Profile</div>
+        <div class="section-content">
+          <p class="exp-desc" style="max-width: 70ch; font-size: 1rem; color: #ccc; line-height: 1.75;">
+            Emerging media professional based in Worcestershire with hands-on experience across commercial lighting, photography, and live broadcast production. Currently completing a Creative Media Production qualification at Kidderminster College, with credits ranging from national advertising campaigns to festival photography and bespoke live streaming infrastructure. Comfortable on large commercial sets and at grassroots events alike.
+          </p>
+        </div>
+      </div>
+
+      <!-- LIGHTING & PRODUCTION -->
+      <div class="section">
+        <div class="section-label">Lighting &amp;<br>Production</div>
+        <div class="section-content">
+
+          <div class="exp-item">
+            <div>
+              <div class="exp-role">Gaffer</div>
+              <div class="exp-org">McDonald's UK</div>
+              <div class="exp-desc">Led lighting on McDonald's UK commercial campaign shoots, heading up the electrical department, designing setups in collaboration with the DP, and managing power distribution and crew on set.</div>
+            </div>
+            <div class="exp-date">2026</div>
+          </div>
+
+          <div class="exp-item">
+            <div>
+              <div class="exp-role">Spark (Lighting Electrician)</div>
+              <div class="exp-org">NEXT &nbsp;·&nbsp; National Geographic &nbsp;·&nbsp; Glow Worm &nbsp;·&nbsp; Coventry Building Society &nbsp;·&nbsp; Available Car</div>
+              <div class="exp-desc">Worked as a spark under the gaffer across a range of commercial, corporate and documentary productions. Responsibilities included cable management, lamp operation, rigging and striking lights, and maintaining safe working practices on set.</div>
+            </div>
+            <div class="exp-date">2024 – 2026</div>
+          </div>
+
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-label">Live Production<br>&amp; Streaming</div>
+        <div class="section-content">
+
+          <div class="exp-item">
+            <div>
+              <div class="exp-role">Lead Streaming Technician &amp; Graphics Operator</div>
+              <div class="exp-org">NCG Work Skills Competition 2026 — Kidderminster College</div>
+              <div class="exp-desc">Sole operator for the live broadcast of the NCG Work Skills Competition, designing and deploying all custom live graphics and building a purpose-built streaming trolley from the ground up to support the production infrastructure. Managed all technical streaming duties during the event.</div>
+            </div>
+            <div class="exp-date">2026</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PHOTOGRAPHY -->
+      <div class="section">
+        <div class="section-label">Photography</div>
+        <div class="section-content">
+
+          <div class="exp-item">
+            <div>
+              <div class="exp-role">Event &amp; Documentary Photographer</div>
+              <div class="exp-org">Bewdley Festival</div>
+              <div class="exp-desc">Official photographer for the Bewdley Festival, capturing the annual celebration of the arts across multiple stages and venues throughout the town.</div>
+            </div>
+            <div class="exp-date">2026</div>
+          </div>
+
+          <div class="exp-item">
+            <div>
+              <div class="exp-role">Event Photographer</div>
+              <div class="exp-org">WCAF — Worcestershire Creative Arts Festival</div>
+              <div class="exp-desc">Official photographer for the WCAF 75th Anniversary, covering the full 7-day programme spread across 4 weeks in April 2026.</div>
+            </div>
+            <div class="exp-date">2026</div>
+          </div>
+
+          <div class="exp-item">
+            <div>
+              <div class="exp-role">Live Music &amp; Events Photographer</div>
+              <div class="exp-org">Freelance</div>
+              <div class="exp-desc">Regular live music and events photography work, specialising in low-light concert environments and capturing candid, energetic moments in challenging shooting conditions.</div>
+            </div>
+            <div class="exp-date">Ongoing</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- OTHER WORK -->
+      <div class="section">
+        <div class="section-label">Other<br>Experience</div>
+        <div class="section-content">
+          <div class="exp-item">
+            <div>
+              <div class="exp-role">Warehouse Operative — Order Picking</div>
+              <div class="exp-org">Parweld UK, Brierley Hill</div>
+              <div class="exp-desc">Seasonal warehouse work during summer holidays, fulfilling industrial welding supply orders to a high standard of accuracy and pace in a logistics environment.</div>
+            </div>
+            <div class="exp-date">Summer 2024 &amp; 2025</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLIENTS -->
+      <div class="section">
+        <div class="section-label">Selected<br>Clients</div>
+        <div class="section-content">
+          <div class="clients-grid">
+            <div class="client-pill">McDonald's</div>
+            <div class="client-pill">NEXT</div>
+            <div class="client-pill">National Geographic</div>
+            <div class="client-pill">Glow Worm</div>
+            <div class="client-pill">Coventry Building Society</div>
+            <div class="client-pill">Available Car</div>
+            <div class="client-pill">Bewdley Festival</div>
+            <div class="client-pill">WCAF</div>
+            <div class="client-pill">Kidderminster College</div>
+            <div class="client-pill">NCG</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="section">
+        <div class="section-label">Skills &amp;<br>Capabilities</div>
+        <div class="section-content">
+
+          <div style="margin-bottom: 1.8rem;">
+            <div style="font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: #555; margin-bottom: 0.8rem; font-weight: 500;">Production</div>
+            <div class="skills-list">
+              <div class="skill-item"><span class="skill-dot"></span> Gaffer / Chief Lighting Tech</div>
+              <div class="skill-item"><span class="skill-dot"></span> Spark (Lighting Electrician)</div>
+              <div class="skill-item"><span class="skill-dot"></span> Grip &amp; Rigging</div>
+              <div class="skill-item"><span class="skill-dot"></span> Power Distribution</div>
+              <div class="skill-item"><span class="skill-dot"></span> Set Safety &amp; Risk Awareness</div>
+              <div class="skill-item"><span class="skill-dot"></span> Commercial Set Workflow</div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 1.8rem;">
+            <div style="font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: #555; margin-bottom: 0.8rem; font-weight: 500;">Photography &amp; Video</div>
+            <div class="skills-list">
+              <div class="skill-item"><span class="skill-dot"></span> Live Event Photography</div>
+              <div class="skill-item"><span class="skill-dot"></span> Studio &amp; Location Photography</div>
+              <div class="skill-item"><span class="skill-dot"></span> Adobe Lightroom</div>
+              <div class="skill-item"><span class="skill-dot"></span> Adobe Photoshop</div>
+              <div class="skill-item"><span class="skill-dot"></span> Adobe Premiere Pro</div>
+              <div class="skill-item"><span class="skill-dot"></span> Adobe After Effects</div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 1.8rem;">
+            <div style="font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: #555; margin-bottom: 0.8rem; font-weight: 500;">Live &amp; Broadcast</div>
+            <div class="skills-list">
+              <div class="skill-item"><span class="skill-dot"></span> OBS Studio</div>
+              <div class="skill-item"><span class="skill-dot"></span> Live Graphics (Overlay Design)</div>
+              <div class="skill-item"><span class="skill-dot"></span> Custom AV Infrastructure Build</div>
+              <div class="skill-item"><span class="skill-dot"></span> Live Sound Engineering</div>
+              <div class="skill-item"><span class="skill-dot"></span> PA &amp; Monitor Systems</div>
+              <div class="skill-item"><span class="skill-dot"></span> Broadcast Streaming Workflow</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="section">
+        <div class="section-label">Education</div>
+        <div class="section-content">
+          <div class="exp-item">
+            <div>
+              <div class="edu-title">BTEC Level 3 Extended Diploma — Creative Media Production</div>
+              <div class="edu-sub">Kidderminster College, Worcestershire</div>
+              <div class="edu-note">Graduating May 2026 &nbsp;·&nbsp; Predicted Merit / Distinction</div>
+            </div>
+            <div class="exp-date">2024 – 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERESTS -->
+      <div class="section">
+        <div class="section-label">Interests</div>
+        <div class="section-content">
+          <p class="exp-desc" style="color: #999; line-height: 1.8; max-width: 66ch;">
+            <strong style="color: #ccc; font-weight: 500;">Keyboard &amp; Music Production</strong> — plays keyboard and has a working understanding of music theory, which feeds directly into instincts for timing and atmosphere on set and in live productions. <br><br>
+            <strong style="color: #ccc; font-weight: 500;">Live Sound Engineering</strong> — practical experience mixing and operating PA systems at live events, complementing the production-side lighting work with a rounded understanding of live technical operations.
+          </p>
+        </div>
+      </div>
+
+    </main>
+
+    <footer>
+      <span>Kieran Perkinton &nbsp;·&nbsp; kieranperk.com</span>
+      <span>Updated May 2026</span>
+    </footer>
+
+  </div>
+
+  <script>
+    // Intersection-observer driven reveals for sections that scroll into view
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.animationPlayState = 'running';
+        }
+      });
+    }, { threshold: 0.05 });
+
+    sections.forEach(s => {
+      s.style.animationPlayState = 'paused';
+      observer.observe(s);
+    });
+  </script>
+
+</body>
+</html>
