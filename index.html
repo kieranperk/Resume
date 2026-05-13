@@ -70,7 +70,7 @@
 
     .hero-name {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      font-size: clamp(3.5rem, 10vw, 11rem);
+      font-size: clamp(4rem, 14vw, 11rem);
       font-weight: 700;
       line-height: 0.88;
       letter-spacing: -0.03em;
@@ -308,91 +308,30 @@
 
     /* ── PRINT STYLES ── */
     @media print {
-      @page {
-        size: A4;
-        margin: 15mm 18mm;
-      }
-
-      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-
-      body { background: #fff !important; color: #000 !important; font-size: 10pt; }
-      :root { --black: #fff; --white: #000; --mid: #333; --rule: #ccc; }
+      body { background: #fff; color: #000; }
+      :root { --black: #fff; --white: #000; --mid: #555; --rule: #ccc; }
 
       #print-btn { display: none !important; }
 
-      .page { max-width: 100%; padding: 0; }
+      .hero { padding: 0; }
+      .hero-name { font-size: 5rem; color: #000; }
+      .hero-meta p, .hero-meta a { color: #333; }
+      .tagline { color: #666; }
 
-      /* Hero */
-      .hero { padding: 0 0 0.5rem; }
-      .hero-inner { padding-bottom: 0.8rem; border-bottom-color: #bbb; grid-template-columns: 1fr auto; }
-      .hero-name { font-size: 3.2rem !important; color: #000; line-height: 0.9; }
-      .hero-meta p { color: #333 !important; font-size: 0.65rem; line-height: 1.8; }
-      .hero-meta a { color: #000 !important; }
-      .tagline { padding: 0.6rem 0 1rem; font-size: 0.8rem; color: #333 !important; }
-
-      .profile-photo { width: 70px; height: 70px; margin-bottom: 1rem; border-color: #ccc; filter: none; }
-
-      /* Sections */
-      .section {
-        padding: 0.7rem 0 !important;
-        border-bottom-color: #ccc !important;
-        gap: 1.2rem !important;
-        opacity: 1 !important;
-        animation: none !important;
-        page-break-inside: avoid;
-        break-inside: avoid;
-      }
-
-      .section-label {
-        font-size: 0.58rem;
-        letter-spacing: 0.15em;
-        color: #333 !important;
-        padding-top: 0.1rem;
-      }
-
-      /* Experience items */
-      .exp-item {
-        padding: 0.6rem 0 !important;
-        border-top-color: #ddd !important;
-        page-break-inside: avoid;
-        break-inside: avoid;
-      }
-
-      .exp-role  { font-size: 0.88rem; color: #000 !important; margin-bottom: 0.15rem; }
-      .exp-org   { font-size: 0.65rem; margin-bottom: 0.25rem; color: #333 !important; }
-      .exp-desc  { font-size: 0.75rem; color: #222 !important; line-height: 1.5; max-width: 100%; }
-      .exp-date  { font-size: 0.62rem; color: #444 !important; }
-      .edu-title { font-size: 0.88rem; color: #000 !important; }
-      .edu-sub   { font-size: 0.65rem; color: #333 !important; }
-      .edu-note  { font-size: 0.72rem; color: #444 !important; }
-
-      /* Clients */
-      .clients-grid { gap: 0.3rem; }
-      .client-pill { border-color: #aaa !important; color: #000 !important; font-size: 0.6rem; padding: 0.2rem 0.6rem; }
-
-      /* Skills */
-      .skills-list { gap: 0.3rem 1.5rem; }
-      .skill-item { font-size: 0.72rem; color: #222 !important; border-bottom-color: #eee !important; padding: 0.15rem 0; }
-      .skill-dot { background: #000 !important; }
-
-      /* Skills sub-category labels */
-      .section-content > div > div:first-child { color: #444 !important; font-size: 0.58rem !important; margin-bottom: 0.4rem !important; }
-
-      /* Interests */
-      .exp-desc strong { color: #000 !important; }
-
-      footer { color: #666 !important; font-size: 0.6rem; padding: 0.8rem 0 0; }
+      .section { opacity: 1 !important; animation: none; }
+      .exp-role, .edu-title { color: #000; }
+      .exp-desc { color: #333; }
+      .exp-date { color: #777; }
+      .exp-org, .edu-sub { color: #555; }
+      .client-pill { border-color: #ccc; color: #000; }
+      .skill-item { color: #333; border-bottom-color: #eee; }
+      .skill-dot { background: #000; }
+      .exp-item { border-top-color: #eee; }
+      footer { color: #aaa; }
+      .logo-mark { border-color: #ccc; color: #999; }
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-      }
-      .hero-meta { text-align: left; }
-    }
-
     @media (max-width: 720px) {
       .section {
         grid-template-columns: 1fr;
@@ -437,7 +376,7 @@
           <p>Bewdley, Worcestershire</p>
         </div>
       </div>
-      <p class="tagline">Gaffer &amp; Lighting Technician &nbsp;·&nbsp; Photographer &nbsp;·&nbsp; Live Production &amp; Streaming</p>
+      <p class="tagline">Lighting Technician &nbsp;·&nbsp; Photographer &nbsp;·&nbsp; Live Production &amp; Streaming</p>
     </header>
 
     <main>
@@ -447,7 +386,7 @@
         <div class="section-label">Profile</div>
         <div class="section-content">
           <p class="exp-desc" style="max-width: 70ch; font-size: 1rem; color: #ccc; line-height: 1.75;">
-            Emerging media professional based in Worcestershire with hands-on experience across commercial lighting, photography, and live broadcast production. Currently completing a Creative Media Production qualification at Kidderminster College, with credits ranging from national advertising campaigns to festival photography and bespoke live streaming infrastructure. Comfortable on large commercial sets and at grassroots events alike.
+            Emerging media professional based in Worcestershire with hands-on experience across commercial lighting, photography, and live broadcast production. Having worked as a best boy and third assistant spark on productions for some of the UK's most recognised brands, that grounding on set opened the doorway to being trusted with the role of Gaffer. Equally at home on large commercial sets and at grassroots events, with a strong work ethic, a team-first attitude, and a genuine passion for the craft.
           </p>
         </div>
       </div>
@@ -461,7 +400,7 @@
             <div>
               <div class="exp-role">Gaffer</div>
               <div class="exp-org">McDonald's UK</div>
-              <div class="exp-desc">Led lighting on McDonald's UK commercial campaign shoots, heading up the electrical department, designing setups in collaboration with the DP, and managing power distribution and crew on set.</div>
+              <div class="exp-desc">Having earned the opportunity through prior work as a spark, was entrusted with the Gaffer role on McDonald's UK commercial campaign shoots. Responsible for the electrical department — working closely under the Director of Photography to deliver lighting setups, managing power distribution, and supporting the wider crew on set.</div>
             </div>
             <div class="exp-date">2026</div>
           </div>
@@ -470,7 +409,7 @@
             <div>
               <div class="exp-role">Spark (Lighting Electrician)</div>
               <div class="exp-org">NEXT &nbsp;·&nbsp; National Geographic &nbsp;·&nbsp; Glow Worm &nbsp;·&nbsp; Coventry Building Society &nbsp;·&nbsp; Available Car</div>
-              <div class="exp-desc">Worked as a spark under the gaffer across a range of commercial, corporate and documentary productions. Responsibilities included cable management, lamp operation, rigging and striking lights, and maintaining safe working practices on set.</div>
+              <div class="exp-desc">Worked as a best boy and third assistant spark across a range of commercial, corporate and documentary productions. Duties included cable management, lamp operation, rigging and striking lights, and maintaining safe working practices on set. Developed a strong ability to remain focused and contribute reliably as part of a wider crew, adapting quickly to the pace and demands of each production.</div>
             </div>
             <div class="exp-date">2024 – 2026</div>
           </div>
@@ -484,7 +423,7 @@
           <div class="exp-item">
             <div>
               <div class="exp-role">Lead Streaming Technician &amp; Graphics Operator</div>
-              <div class="exp-org">NCG Work Skills Competition 2026 — Kidderminster College</div>
+              <div class="exp-org">NCG Work Skills Competition 2026</div>
               <div class="exp-desc">Sole operator for the live broadcast of the NCG Work Skills Competition, designing and deploying all custom live graphics and building a purpose-built streaming trolley from the ground up to support the production infrastructure. Managed all technical streaming duties during the event.</div>
             </div>
             <div class="exp-date">2026</div>
@@ -502,7 +441,7 @@
             <div>
               <div class="exp-role">Event &amp; Documentary Photographer</div>
               <div class="exp-org">Bewdley Festival</div>
-              <div class="exp-desc">Official photographer for the Bewdley Festival, capturing the annual celebration of the arts across multiple stages and venues throughout the town.</div>
+              <div class="exp-desc">Official photographer for the Bewdley Festival, capturing the 37th annual celebration of the arts across multiple stages and venues throughout the town.</div>
             </div>
             <div class="exp-date">2026</div>
           </div>
@@ -511,7 +450,7 @@
             <div>
               <div class="exp-role">Event Photographer</div>
               <div class="exp-org">WCAF — Worcestershire Creative Arts Festival</div>
-              <div class="exp-desc">Official photographer for the WCAF 75th Anniversary, covering the full 7-day programme spread across 4 weeks in April 2026.</div>
+              <div class="exp-desc">Official photographer for the WCAF 75th Anniversary, covering the full 7-day programme spread across 4 weeks in April 2026. Documented performances, installations and public engagement across the festival's landmark celebration.</div>
             </div>
             <div class="exp-date">2026</div>
           </div>
