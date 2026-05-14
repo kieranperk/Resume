@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kieran Perkinton - Photographer, Gaffer & Media Technician</title>
+  <title>Kieran Perkinton - Photographer, Lighting & Media Technician</title>
   <link rel="icon" type="image/jpeg" href="image.jpg">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -308,30 +308,91 @@
 
     /* ── PRINT STYLES ── */
     @media print {
-      body { background: #fff; color: #000; }
-      :root { --black: #fff; --white: #000; --mid: #555; --rule: #ccc; }
+      @page {
+        size: A4;
+        margin: 15mm 18mm;
+      }
+
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+      body { background: #fff !important; color: #000 !important; font-size: 10pt; }
+      :root { --black: #fff; --white: #000; --mid: #333; --rule: #ccc; }
 
       #print-btn { display: none !important; }
 
-      .hero { padding: 0; }
-      .hero-name { font-size: 5rem; color: #000; }
-      .hero-meta p, .hero-meta a { color: #333; }
-      .tagline { color: #666; }
+      .page { max-width: 100%; padding: 0; }
 
-      .section { opacity: 1 !important; animation: none; }
-      .exp-role, .edu-title { color: #000; }
-      .exp-desc { color: #333; }
-      .exp-date { color: #777; }
-      .exp-org, .edu-sub { color: #555; }
-      .client-pill { border-color: #ccc; color: #000; }
-      .skill-item { color: #333; border-bottom-color: #eee; }
-      .skill-dot { background: #000; }
-      .exp-item { border-top-color: #eee; }
-      footer { color: #aaa; }
-      .logo-mark { border-color: #ccc; color: #999; }
+      /* Hero */
+      .hero { padding: 0 0 0.5rem; }
+      .hero-inner { padding-bottom: 0.8rem; border-bottom-color: #bbb; grid-template-columns: 1fr auto; }
+      .hero-name { font-size: 3.2rem !important; color: #000; line-height: 0.9; }
+      .hero-meta p { color: #333 !important; font-size: 0.65rem; line-height: 1.8; }
+      .hero-meta a { color: #000 !important; }
+      .tagline { padding: 0.6rem 0 1rem; font-size: 0.8rem; color: #333 !important; }
+
+      .profile-photo { width: 70px; height: 70px; margin-bottom: 1rem; border-color: #ccc; filter: none; }
+
+      /* Sections */
+      .section {
+        padding: 0.7rem 0 !important;
+        border-bottom-color: #ccc !important;
+        gap: 1.2rem !important;
+        opacity: 1 !important;
+        animation: none !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .section-label {
+        font-size: 0.58rem;
+        letter-spacing: 0.15em;
+        color: #333 !important;
+        padding-top: 0.1rem;
+      }
+
+      /* Experience items */
+      .exp-item {
+        padding: 0.6rem 0 !important;
+        border-top-color: #ddd !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .exp-role  { font-size: 0.88rem; color: #000 !important; margin-bottom: 0.15rem; }
+      .exp-org   { font-size: 0.65rem; margin-bottom: 0.25rem; color: #333 !important; }
+      .exp-desc  { font-size: 0.75rem; color: #222 !important; line-height: 1.5; max-width: 100%; }
+      .exp-date  { font-size: 0.62rem; color: #444 !important; }
+      .edu-title { font-size: 0.88rem; color: #000 !important; }
+      .edu-sub   { font-size: 0.65rem; color: #333 !important; }
+      .edu-note  { font-size: 0.72rem; color: #444 !important; }
+
+      /* Clients */
+      .clients-grid { gap: 0.3rem; }
+      .client-pill { border-color: #aaa !important; color: #000 !important; font-size: 0.6rem; padding: 0.2rem 0.6rem; }
+
+      /* Skills */
+      .skills-list { gap: 0.3rem 1.5rem; }
+      .skill-item { font-size: 0.72rem; color: #222 !important; border-bottom-color: #eee !important; padding: 0.15rem 0; }
+      .skill-dot { background: #000 !important; }
+
+      /* Skills sub-category labels */
+      .section-content > div > div:first-child { color: #444 !important; font-size: 0.58rem !important; margin-bottom: 0.4rem !important; }
+
+      /* Interests */
+      .exp-desc strong { color: #000 !important; }
+
+      footer { color: #666 !important; font-size: 0.6rem; padding: 0.8rem 0 0; }
     }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .hero-meta { text-align: left; }
+    }
+
     @media (max-width: 720px) {
       .section {
         grid-template-columns: 1fr;
